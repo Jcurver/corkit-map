@@ -22,7 +22,34 @@ document.addEventListener("DOMContentLoaded", function () {
       center: new naver.maps.LatLng(37.3595704, 127.105399),
       zoom: 13,
     };
-    new naver.maps.Map(mapElement, mapOptions);
+    var map = new naver.maps.Map(mapElement, mapOptions);
+    let markers = [
+      {
+        position: new naver.maps.LatLng(37.3595704, 127.085399),
+      },
+      {
+        position: new naver.maps.LatLng(37.3415704, 127.095399),
+      },
+      {
+        position: new naver.maps.LatLng(37.3455704, 127.114399),
+      },
+      {
+        position: new naver.maps.LatLng(37.3495704, 127.106399),
+      },
+      {
+        position: new naver.maps.LatLng(37.3335704, 127.105399),
+      },
+    ];
+
+    markers.map((marker) => {
+      let mark = new naver.maps.Marker({
+        position: marker.position,
+        map: map,
+      });
+      new naver.maps.Event.addListener(mark, "click", function (e) {
+        map.panTo(marker.position);
+      });
+    });
   };
 
   loadNavermapsScript();
