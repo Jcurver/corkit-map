@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.head.appendChild(script);
     script.onload = () => initializeMap();
   };
+  console.log("hi");
 
   const initializeMap = () => {
     const naver = window.naver;
