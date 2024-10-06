@@ -25,7 +25,11 @@ const getReactNativeMessage = (event, map) => {
         position: new naver.maps.LatLng(d.latitude, d.longitude),
         map: map,
         icon: {
-          url: "https://play-lh.googleusercontent.com/5WifOWRs00-sCNxCvFNJ22d4xg_NQkAODjmOKuCQqe57SjmDw8S6VOSLkqo6fs4zqis",
+          // url: "https://play-lh.googleusercontent.com/5WifOWRs00-sCNxCvFNJ22d4xg_NQkAODjmOKuCQqe57SjmDw8S6VOSLkqo6fs4zqis",
+          content: `
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center">
+              <img src="https://play-lh.googleusercontent.com/5WifOWRs00-sCNxCvFNJ22d4xg_NQkAODjmOKuCQqe57SjmDw8S6VOSLkqo6fs4zqis" style="width: 50px; height: 50px;"/>
+          </div>`,
           scaledSize: new naver.maps.Size(50, 50),
           origin: new naver.maps.Point(0, 0),
           anchor: new naver.maps.Point(25, 25),
@@ -43,7 +47,13 @@ const getReactNativeMessage = (event, map) => {
           position: new naver.maps.LatLng(d.latitude, d.longitude),
           map: map,
           icon: {
-            url: "https://i.pngimg.me/thumb/f/720/comdlpng6960621.jpg",
+            // url: "https://i.pngimg.me/thumb/f/720/comdlpng6960621.jpg",
+            content: `
+            <div style="display:flex; flex-direction:column; justify-content:center; align-items:center">
+                <img src="https://i.pngimg.me/thumb/f/720/comdlpng6960621.jpg" style="width: 50px; height: 50px;"/>
+                <p>${d.name}</p>
+            </div>`,
+
             scaledSize: new naver.maps.Size(50, 50),
             origin: new naver.maps.Point(0, 0),
             anchor: new naver.maps.Point(25, 25),
@@ -83,6 +93,7 @@ const initializeMap = () => {
       },
     });
   });
+
   const receiver = navigator.userAgent.includes("Android") ? document : window;
   receiver.addEventListener("message", (event) => getReactNativeMessage(event, map));
   postMessage({ type: "MAP_READY" });
