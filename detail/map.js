@@ -18,6 +18,20 @@ const getReactNativeMessage = (event, map) => {
 
   if (message && message.type === "CENTER_MAP") {
     map.setCenter(new naver.maps.LatLng(message.data.lat, message.data.lng));
+    new naver.maps.Marker({
+      position: new naver.maps.LatLng(message.data.lat, message.data.lng),
+      map: map,
+      icon: {
+        // url: "https://play-lh.googleusercontent.com/5WifOWRs00-sCNxCvFNJ22d4xg_NQkAODjmOKuCQqe57SjmDw8S6VOSLkqo6fs4zqis",
+        content: `
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center">
+              <img src="https://play-lh.googleusercontent.com/5WifOWRs00-sCNxCvFNJ22d4xg_NQkAODjmOKuCQqe57SjmDw8S6VOSLkqo6fs4zqis" style="width: 50px; height: 50px;"/>
+          </div>`,
+        scaledSize: new naver.maps.Size(50, 50),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(25, 25),
+      },
+    });
   }
   if (message && message.type === "CURRENT_LOCATION_PIN") {
     message?.data?.map((d) => {
